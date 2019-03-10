@@ -157,53 +157,56 @@ class CycleGAN(tfds.core.GeneratorBasedBuilder):
     )
 
   def _split_generators(self, dl_manager):
-    #dl_manager = tfds.download.DownloadManager(download_dir=path)
     url = _DL_URLS[self.builder_config.name]
     data_dirs = dl_manager.download_and_extract(url) 
-    #print(data_dirs) 
-    path_to_dataset = data_dirs + "/" + os.listdir(data_dirs)[0]
-    #print(path_to_dataset) 
-
+    print(data_dirs)
+    path_to_dataset = data_dirs + "/" + tf.io.gfile.listdir(data_dirs)[0]
+    print(path_to_dataset)
     trainA_files = tf.io.gfile.glob(os.path.join(path_to_dataset, 'trainA'))
     trainB_files = tf.io.gfile.glob(os.path.join(path_to_dataset, 'trainB'))
     testA_files = tf.io.gfile.glob(os.path.join(path_to_dataset, 'testA'))
     testB_files = tf.io.gfile.glob(os.path.join(path_to_dataset, 'testB'))
-    #print(trainA_files)
-    #print(trainB_files)
-    #print(testA_files)
-    #print(testB_files)
     
     return [
         tfds.core.SplitGenerator(
-            name=tfds.Split.TRAIN,
+            name="trainA",
             num_shards=10,
-            gen_kwargs={'filesA': trainA_files, 
-                        'filesB': trainB_files,
-                       },  
-            ),
+            gen_kwargs={"files": trainA_files,
+                        "label": "A",
+            }
+        ),
         tfds.core.SplitGenerator(
-            name=tfds.Split.TEST,
+            name="trainB",
+            num_shards=10,
+            gen_kwargs={"files": trainB_files,
+                        "label": "B",
+            }
+        ),
+        tfds.core.SplitGenerator(
+            name="testA",
             num_shards=1,
-            gen_kwargs={'filesA': testA_files, 
-                        'filesB': testB_files,  
-                       },   
-            ),
+            gen_kwargs={"files": testA_files,
+                        "label": "A",
+            }
+        ),
+        tfds.core.SplitGenerator(
+            name="testB",
+            num_shards=1,
+            gen_kwargs={"files": testB_files,
+                        "label": "B",
+            }
+        ),
     ]
 
-  def _generate_examples(self, filesA, filesB): 
-    imagesA=os.listdir(filesA[0]+"/")
-    imagesB=os.listdir(filesB[0]+"/")  
+  def _generate_examples(self, files, label): 
+    path=files[0]+"/"
+    images=tf.io.gfile.listdir(path)  
 
-    for image in imagesA:
+    for image in images:
       yield{
-          "image": image,
-          "label": "A",
-      } 
-    for image in imagesB:
-      yield{
-          "image": image,
-          "label": "B",
-      }      
+          "image": path+"/"+image,
+          "label": label,
+      }
       
 
 
