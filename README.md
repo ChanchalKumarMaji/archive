@@ -1,105 +1,104 @@
 ```python
-label : 0, images : 40
-label : 1, images : 60
-label : 2, images : 40
-label : 3, images : 56
-label : 4, images : 65
-label : 5, images : 45
-label : 6, images : 40
-label : 7, images : 85
-label : 8, images : 46
-label : 9, images : 45
-label : 10, images : 87
-label : 11, images : 87
-label : 12, images : 49
-label : 13, images : 48
-label : 14, images : 49
-label : 15, images : 41
-label : 16, images : 85
-label : 17, images : 82
-label : 18, images : 49
-label : 19, images : 56
-label : 20, images : 40
-label : 21, images : 59
-label : 22, images : 91
-label : 23, images : 42
-label : 24, images : 41
-label : 25, images : 41
-label : 26, images : 40
-label : 27, images : 66
-label : 28, images : 78
-label : 29, images : 85
-label : 30, images : 52
-label : 31, images : 45
-label : 32, images : 46
-label : 33, images : 40
-label : 34, images : 43
-label : 35, images : 75
-label : 36, images : 108
-label : 37, images : 56
-label : 38, images : 41
-label : 39, images : 67
-label : 40, images : 127
-label : 41, images : 59
-label : 42, images : 130
-label : 43, images : 93
-label : 44, images : 40
-label : 45, images : 196
-label : 46, images : 67
-label : 47, images : 71
-label : 48, images : 49
-label : 49, images : 92
-label : 50, images : 258
-label : 51, images : 85
-label : 52, images : 93
-label : 53, images : 61
-label : 54, images : 71
-label : 55, images : 109
-label : 56, images : 67
-label : 57, images : 114
-label : 58, images : 67
-label : 59, images : 109
-label : 60, images : 50
-label : 61, images : 55
-label : 62, images : 54
-label : 63, images : 52
-label : 64, images : 102
-label : 65, images : 61
-label : 66, images : 42
-label : 67, images : 54
-label : 68, images : 54
-label : 69, images : 62
-label : 70, images : 78
-label : 71, images : 96
-label : 72, images : 194
-label : 73, images : 171
-label : 74, images : 120
-label : 75, images : 107
-label : 76, images : 251
-label : 77, images : 137
-label : 78, images : 41
-label : 79, images : 105
-label : 80, images : 166
-label : 81, images : 112
-label : 82, images : 131
-label : 83, images : 86
-label : 84, images : 63
-label : 85, images : 58
-label : 86, images : 63
-label : 87, images : 154
-label : 88, images : 184
-label : 89, images : 82
-label : 90, images : 76
-label : 91, images : 66
-label : 92, images : 46
-label : 93, images : 162
-label : 94, images : 128
-label : 95, images : 91
-label : 96, images : 66
-label : 97, images : 82
-label : 98, images : 63
-label : 99, images : 49
-label : 100, images : 58
-label : 101, images : 48
-
+label : 0, images : 40, name : pink primrose
+label : 1, images : 60, name : hard-leaved pocket orchid
+label : 2, images : 40, name : canterbury bells
+label : 3, images : 56, name : sweet pea
+label : 4, images : 65, name : english marigold
+label : 5, images : 45, name : tiger lily
+label : 6, images : 40, name : moon orchid
+label : 7, images : 85, name : bird of paradise
+label : 8, images : 46, name : monkshood
+label : 9, images : 45, name : globe thistle
+label : 10, images : 87, name : snapdragon
+label : 11, images : 87, name : colt's foot
+label : 12, images : 49, name : king protea
+label : 13, images : 48, name : spear thistle
+label : 14, images : 49, name : yellow iris
+label : 15, images : 41, name : globe-flower
+label : 16, images : 85, name : purple coneflower
+label : 17, images : 82, name : peruvian lily
+label : 18, images : 49, name : balloon flower
+label : 19, images : 56, name : giant white arum lily
+label : 20, images : 40, name : fire lily
+label : 21, images : 59, name : pincushion flower
+label : 22, images : 91, name : fritillary
+label : 23, images : 42, name : red ginger
+label : 24, images : 41, name : grape hyacinth
+label : 25, images : 41, name : corn poppy
+label : 26, images : 40, name : prince of wales feathers
+label : 27, images : 66, name : stemless gentian
+label : 28, images : 78, name : artichoke
+label : 29, images : 85, name : sweet william
+label : 30, images : 52, name : carnation
+label : 31, images : 45, name : garden phlox
+label : 32, images : 46, name : love in the mist
+label : 33, images : 40, name : mexican aster
+label : 34, images : 43, name : alpine sea holly
+label : 35, images : 75, name : ruby-lipped cattleya
+label : 36, images : 108, name : cape flower
+label : 37, images : 56, name : great masterwort
+label : 38, images : 41, name : siam tulip
+label : 39, images : 67, name : lenten rose
+label : 40, images : 127, name : barbeton daisy
+label : 41, images : 59, name : daffodil
+label : 42, images : 130, name : sword lily
+label : 43, images : 93, name : poinsettia
+label : 44, images : 40, name : bolero deep blue
+label : 45, images : 196, name : wallflower
+label : 46, images : 67, name : marigold
+label : 47, images : 71, name : buttercup
+label : 48, images : 49, name : oxeye daisy
+label : 49, images : 92, name : common dandelion
+label : 50, images : 258, name : petunia
+label : 51, images : 85, name : wild pansy
+label : 52, images : 93, name : primula
+label : 53, images : 61, name : sunflower
+label : 54, images : 71, name : pelargonium
+label : 55, images : 109, name : bishop of llandaff
+label : 56, images : 67, name : gaura
+label : 57, images : 114, name : geranium
+label : 58, images : 67, name : orange dahlia
+label : 59, images : 109, name : pink-yellow dahlia?
+label : 60, images : 50, name : cautleya spicata
+label : 61, images : 55, name : japanese anemone
+label : 62, images : 54, name : black-eyed susan
+label : 63, images : 52, name : silverbush
+label : 64, images : 102, name : californian poppy
+label : 65, images : 61, name : osteospermum
+label : 66, images : 42, name : spring crocus
+label : 67, images : 54, name : bearded iris
+label : 68, images : 54, name : windflower
+label : 69, images : 62, name : tree poppy
+label : 70, images : 78, name : gazania
+label : 71, images : 96, name : azalea
+label : 72, images : 194, name : water lily
+label : 73, images : 171, name : rose
+label : 74, images : 120, name : thorn apple
+label : 75, images : 107, name : morning glory
+label : 76, images : 251, name : passion flower
+label : 77, images : 137, name : lotus
+label : 78, images : 41, name : toad lily
+label : 79, images : 105, name : anthurium
+label : 80, images : 166, name : frangipani
+label : 81, images : 112, name : clematis
+label : 82, images : 131, name : hibiscus
+label : 83, images : 86, name : columbine
+label : 84, images : 63, name : desert-rose
+label : 85, images : 58, name : tree mallow
+label : 86, images : 63, name : magnolia
+label : 87, images : 154, name : cyclamen
+label : 88, images : 184, name : watercress
+label : 89, images : 82, name : canna lily
+label : 90, images : 76, name : hippeastrum
+label : 91, images : 66, name : bee balm
+label : 92, images : 46, name : ball moss
+label : 93, images : 162, name : foxglove
+label : 94, images : 128, name : bougainvillea
+label : 95, images : 91, name : camellia
+label : 96, images : 66, name : mallow
+label : 97, images : 82, name : mexican petunia
+label : 98, images : 63, name : bromelia
+label : 99, images : 49, name : blanket flower
+label : 100, images : 58, name : trumpet creeper
+label : 101, images : 48, name : blackberry lily
 ```
