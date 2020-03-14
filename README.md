@@ -1,40 +1,105 @@
-```
-.Total configs: 2
-Testing config 32x32
-Downloading and preparing dataset downsampled_imagenet (?? GiB) to /tmp/downsampled_imagenet_testwyr326xt/tmplxjpw1r9/downsampled_imagenet/32x32/0.1.0...
-E..s
-======================================================================
-ERROR: test_download_and_prepare_as_dataset (__main__.DownsampledImagenetTest)
-test_download_and_prepare_as_dataset (__main__.DownsampledImagenetTest)
-Run the decorated test method.
-----------------------------------------------------------------------
-Traceback (most recent call last):
-  File "/home/chanchal/anaconda3/lib/python3.6/site-packages/tensorflow_datasets/testing/test_utils.py", line 185, in decorated
-    f(self, *args, **kwargs)
-  File "/home/chanchal/anaconda3/lib/python3.6/site-packages/tensorflow_datasets/testing/dataset_builder_testing.py", line 213, in test_download_and_prepare_as_dataset
-    self._download_and_prepare_as_dataset(builder)
-  File "/home/chanchal/anaconda3/lib/python3.6/site-packages/tensorflow_datasets/testing/dataset_builder_testing.py", line 247, in _download_and_prepare_as_dataset
-    builder.download_and_prepare(download_config=download_config)
-  File "/home/chanchal/anaconda3/lib/python3.6/site-packages/tensorflow_datasets/core/api_utils.py", line 52, in disallow_positional_args_dec
-    return fn(*args, **kwargs)
-  File "/home/chanchal/anaconda3/lib/python3.6/site-packages/tensorflow_datasets/core/dataset_builder.py", line 285, in download_and_prepare
-    download_config=download_config)
-  File "/home/chanchal/anaconda3/lib/python3.6/site-packages/tensorflow_datasets/core/dataset_builder.py", line 816, in _download_and_prepare
-    max_examples_per_split=download_config.max_examples_per_split,
-  File "/home/chanchal/anaconda3/lib/python3.6/site-packages/tensorflow_datasets/core/dataset_builder.py", line 694, in _download_and_prepare
-    self._prepare_split(split_generator, **prepare_split_kwargs)
-  File "/home/chanchal/anaconda3/lib/python3.6/site-packages/tensorflow_datasets/core/dataset_builder.py", line 820, in _prepare_split
-    generator = self._generate_examples(**split_generator.gen_kwargs)
-  File "/home/chanchal/anaconda3/lib/python3.6/site-packages/tensorflow_datasets/image/downsampled_imagenet.py", line 128, in _generate_examples
-    for fname, fobj in archive:
-  File "/home/chanchal/anaconda3/lib/python3.6/site-packages/tensorflow_datasets/core/download/extractor.py", line 149, in iter_tar
-    tar = tarfile.open(mode=read_type, fileobj=fobj)
-  File "/home/chanchal/anaconda3/lib/python3.6/tarfile.py", line 1574, in open
-    raise ReadError("file could not be opened successfully")
-tarfile.ReadError: file could not be opened successfully
+```python
+label : 0, images : 40
+label : 1, images : 60
+label : 2, images : 40
+label : 3, images : 56
+label : 4, images : 65
+label : 5, images : 45
+label : 6, images : 40
+label : 7, images : 85
+label : 8, images : 46
+label : 9, images : 45
+label : 10, images : 87
+label : 11, images : 87
+label : 12, images : 49
+label : 13, images : 48
+label : 14, images : 49
+label : 15, images : 41
+label : 16, images : 85
+label : 17, images : 82
+label : 18, images : 49
+label : 19, images : 56
+label : 20, images : 40
+label : 21, images : 59
+label : 22, images : 91
+label : 23, images : 42
+label : 24, images : 41
+label : 25, images : 41
+label : 26, images : 40
+label : 27, images : 66
+label : 28, images : 78
+label : 29, images : 85
+label : 30, images : 52
+label : 31, images : 45
+label : 32, images : 46
+label : 33, images : 40
+label : 34, images : 43
+label : 35, images : 75
+label : 36, images : 108
+label : 37, images : 56
+label : 38, images : 41
+label : 39, images : 67
+label : 40, images : 127
+label : 41, images : 59
+label : 42, images : 130
+label : 43, images : 93
+label : 44, images : 40
+label : 45, images : 196
+label : 46, images : 67
+label : 47, images : 71
+label : 48, images : 49
+label : 49, images : 92
+label : 50, images : 258
+label : 51, images : 85
+label : 52, images : 93
+label : 53, images : 61
+label : 54, images : 71
+label : 55, images : 109
+label : 56, images : 67
+label : 57, images : 114
+label : 58, images : 67
+label : 59, images : 109
+label : 60, images : 50
+label : 61, images : 55
+label : 62, images : 54
+label : 63, images : 52
+label : 64, images : 102
+label : 65, images : 61
+label : 66, images : 42
+label : 67, images : 54
+label : 68, images : 54
+label : 69, images : 62
+label : 70, images : 78
+label : 71, images : 96
+label : 72, images : 194
+label : 73, images : 171
+label : 74, images : 120
+label : 75, images : 107
+label : 76, images : 251
+label : 77, images : 137
+label : 78, images : 41
+label : 79, images : 105
+label : 80, images : 166
+label : 81, images : 112
+label : 82, images : 131
+label : 83, images : 86
+label : 84, images : 63
+label : 85, images : 58
+label : 86, images : 63
+label : 87, images : 154
+label : 88, images : 184
+label : 89, images : 82
+label : 90, images : 76
+label : 91, images : 66
+label : 92, images : 46
+label : 93, images : 162
+label : 94, images : 128
+label : 95, images : 91
+label : 96, images : 66
+label : 97, images : 82
+label : 98, images : 63
+label : 99, images : 49
+label : 100, images : 58
+label : 101, images : 48
 
-----------------------------------------------------------------------
-Ran 5 tests in 0.268s
-
-FAILED (errors=1, skipped=1)
 ```
