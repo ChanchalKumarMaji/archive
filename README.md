@@ -1,4 +1,4 @@
-```python
+```
 label : 0, images : 40, name : pink primrose
 label : 1, images : 60, name : hard-leaved pocket orchid
 label : 2, images : 40, name : canterbury bells
