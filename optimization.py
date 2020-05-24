@@ -32,74 +32,59 @@ import numpy as np
 import datetime as dt  		  	   		     			  		 			 	 	 		 		 	 		 		 	 		  	 	 			  	 
 from util import get_data, plot_data
 from scipy.optimize import minimize  		  	   		     			  		 			 	 	 		 		 	 		 		 	 				  	 
-
   		  	   		     			  		 			 	 	 		 		 	 		 		 	 		  	 	 			  	 
 # This is the function that will be tested by the autograder  		  	   		     			  		 			 	 	 		 		 	 		 		 	 		  	 	 			  	 
-# The student must update this code to properly implement the functionality  		  	   		     			  		 			 	 	 		 		 	 		 		 	 		  	 	 			  	 
-def optimize_portfolio(sd=dt.datetime(2008,1,1), ed=dt.datetime(2009,1,1), \
-    syms=['GOOG','AAPL','GLD','XOM'], gen_plot=False):
-  	sv = 1.0
+# The student must update this code to properly implement the functionality
 
-    # Read in adjusted closing prices for given symbols, date range
+
+def optimize_portfolio(sd=dt.datetime(2008, 1, 1), ed=dt.datetime(2009, 1, 1),syms=['GOOG', 'AAPL','GLD', 'XOM'], gen_plot=False):
+    sv = 1.0
     dates = pd.date_range(sd, ed)
-    prices_all = get_data(syms, dates)  # automatically adds SPY  		  	   		     			  		 			 	 	 		 		 	 		 		 	 		  	 	 			  	 
-    prices = prices_all[syms]  # only portfolio symbols  		  	   		     			  		 			 	 	 		 		 	 		 		 	 		  	 	 			  	 
-    prices_SPY = prices_all['SPY']  # only SPY, for comparison later  		  	   		     			  		 			 	 	 		 		 	 		 		 	 		  	 	 			  	 
-  		  	   		     			  		 			 	 	 		 		 	 		 		 	 		  	 	 			  	 
-    # find the allocations for the optimal portfolio  		  	   		     			  		 			 	 	 		 		 	 		 		 	 		  	 	 			  	 
-    # note that the values here ARE NOT meant to be correct for a test case  		  	   		     			  		 			 	 	 		 		 	 		 		 	 		  	 	 			  	 
-    #allocs = np.asarray([0.2, 0.2, 0.3, 0.3]) # add code here to find the allocations  		  	   		     			  		 			 	 	 		 		 	 		 		 	 		  	 	 			  	 
-    #cr, adr, sddr, sr = [0.25, 0.001, 0.0005, 2.1] # add code here to compute stats  		  	   		     			  		 			 	 	 		 		
-    stocks = prices
+    prices_all = get_data(syms, dates)
+    prices = prices_all[syms]
+    prices_SPY = prices_all['SPY']
     
+    stocks = prices
     log_ret = np.log(stocks/stocks.shift(1))
     
     def get_ret_vol_sr(weights): 
         weights = np.array(weights)
         ret = np.sum(log_ret.mean() * weights) * 252
-        vol = np.sqrt(np.dot(weights.T,np.dot(log_ret.cov()*252,weights)))
-        sr = ret/vol 
-        return np.array([ret,vol,sr])
-
+        vol = np.sqrt(np.dot(weights.T, np.dot(log_ret.cov()*252, weights)))
+        sr = ret / vol 
+        return np.array([ret, vol, sr])
+    
     def neg_sharpe(weights):
         return get_ret_vol_sr(weights)[2] * -1
-
+    
     def check_sum(weights):
         return np.sum(weights) - 1
     
-    cons = ({'type':'eq','fun':check_sum})
-    
+    cons = ({'type':'eq', 'fun':check_sum})
     bounds = [(0.0, 1.0) for i in stocks.columns]
+    init_guess = np.asarray([1 / len(syms)] * len(syms))
+    opt_results = minimize(neg_sharpe, init_guess, method='SLSQP', bounds=bounds, constraints=cons)
+    allocs = opt_results.x
+    sddr = opt_results.fun
+    sr = get_ret_vol_sr(allocs)[2]
     
-    init_guess = np.asarray([1/len(syms)]*len(syms))
+    normed = prices/prices.values[0]
+    alloced = normed.multiply(allocs)
+    pos_vals = alloced.multiply(sv)
     
-    opt_results = minimize(neg_sharpe, init_guess, method='SLSQP', bounds=bounds, constraints=cons) 	 		 		 	 		  	 	 			  	 
-  	
-  	allocs = opt_results.x
-  	sddr = opt_results.fun
-  	sr = get_ret_vol_sr(allocs)[2]
-  	
-  	normed = prices/prices.values[0]
-  	alloced = normed.multiply(allocs)
-  	pos_vals = alloced.multiply(sv)
     port_val = pos_vals.sum(axis=1)
-    
     dr = (port_val / port_val.shift(1)) - 1
     cr = (port_val[-1] / port_val[0]) - 1
     adr = dr.mean()
-    #a=np.sqrt(252)
-    #sr = a * ((dr.subtract(0)).mean())/sddr
-  		  	   		     			  		 			 	 	 		 		 	 		 		 	 		  	 	 			  	 
-    # Get daily portfolio value  		  	   		     			  		 			 	 	 		 		 	 		 		 	 		  	 	 			  	 
-    #port_val = prices_SPY # add code here to compute daily portfolio values  		  	   		     			  		 			 	 	 		 		 	 		 		 	 		  	 	 			  	 
-  		  	   		     			  		 			 	 	 		 		 	 		 		 	 		  	 	 			  	 
-    # Compare daily portfolio value with SPY using a normalized plot  		  	   		     			  		 			 	 	 		 		 	 		 		 	 		  	 	 			  	 
-    if gen_plot:  		  	   		     			  		 			 	 	 		 		 	 		 		 	 		  	 	 			  	 
-        # add code to plot here  		  	   		     			  		 			 	 	 		 		 	 		 		 	 		  	 	 			  	 
-        df_temp = pd.concat([port_val, prices_SPY], keys=['Portfolio', 'SPY'], axis=1)  		  	   		     			  		 			 	 	 		 		 	 		 		 	 		  	 	 			  	 
-        pass  		  	   		     			  		 			 	 	 		 		 	 		 		 	 		  	 	 			  	 
-  		  	   		     			  		 			 	 	 		 		 	 		 		 	 		  	 	 			  	 
-    return allocs, cr, adr, sddr, sr  		  	   		     			  		 			 	 	 		 		 	 		 		 	 		  	 	 			  	 
+    
+    if gen_plot:
+        port_val = port_val/port_val[0]
+        prices_SPY = prices_SPY/prices_SPY[0]
+        df_temp = pd.concat([port_val, prices_SPY], keys=['Portfolio', 'SPY'], axis=1)
+        plot_data(df_temp, title="Daily portfolio value and SPY")
+    
+    return allocs, cr, adr, sddr, sr
+    	  	 
   		  	   		     			  		 			 	 	 		 		 	 		 		 	 		  	 	 			  	 
 def test_code():  		  	   		     			  		 			 	 	 		 		 	 		 		 	 		  	 	 			  	 
     # This function WILL NOT be called by the auto grader  		  	   		     			  		 			 	 	 		 		 	 		 		 	 		  	 	 			  	 
